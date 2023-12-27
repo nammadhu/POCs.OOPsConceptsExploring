@@ -13,11 +13,11 @@
             Console.WriteLine($"ValueType:result={a1}");
             Console.WriteLine();
             BaseClass b = new BaseClass();
-            b.MyString1 = "madhu1";
-            Console.WriteLine("ReferenceType:Initially b.MyString1=" + b.MyString1);
+            b.MyPropertyInt = 100;
+            Console.WriteLine("ReferenceType:Initially b.MyPropertyInt=" + b.MyPropertyInt);
             ChangeReferenceType(b);
             Console.WriteLine($"ReferenceType:Calling {nameof(ChangeReferenceType)}");
-            Console.WriteLine($"ReferenceType:result={b.MyString1}");
+            Console.WriteLine($"ReferenceType:result={b.MyPropertyInt}");
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine();
             #endregion valuetypeVsRefType
@@ -36,12 +36,13 @@
             }
         static void ChangeReferenceType(BaseClass std2)
             {
-            std2.MyString1 = "Steve";
+            std2.MyPropertyInt = 200;
             }
         }
     public class BaseClass : AbstractBaseClass
         {
 
+        public int MyPropertyInt { get; set; }
         private string stringField = "From Base class private stringField";//encapsulation
         private string stringFieldOther = "From Base class private stringFieldOther";//encapsulation
 
