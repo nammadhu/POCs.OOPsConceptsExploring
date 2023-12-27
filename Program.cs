@@ -4,12 +4,39 @@
         {
         static void Main(string[] args)
             {
+            #region valuetypeVsRefType
+            Console.WriteLine("Test1:Value type vs Ref type");
+            int a1 = 10;
+            Console.WriteLine("ValueType:Initially int a1=" + a1);
+            ChangeValue(a1);
+            Console.WriteLine($"ValueType:Calling {nameof(ChangeValue)}");
+            Console.WriteLine($"ValueType:result={a1}");
+            Console.WriteLine();
             BaseClass b = new BaseClass();
-          //  b.NormalProperty2 = 1;
+            b.MyString1 = "madhu1";
+            Console.WriteLine("ReferenceType:Initially b.MyString1=" + b.MyString1);
+            ChangeReferenceType(b);
+            Console.WriteLine($"ReferenceType:Calling {nameof(ChangeReferenceType)}");
+            Console.WriteLine($"ReferenceType:result={b.MyString1}");
+            Console.WriteLine("-------------------------------------------------");
+            Console.WriteLine();
+            #endregion valuetypeVsRefType
+            //  b.NormalProperty2 = 1;
 
             // AbstractBaseClass a = new AbstractBaseClass();//1.not allowed to create abstract instance
-          //  b.NormalProperty2 = 1;
+            //  b.NormalProperty2 = 1;
             Console.WriteLine("Hello, World!");
+            }
+        static void ChangeValue(int x)
+            {
+            x = 200;
+
+            Console.WriteLine(x);
+
+            }
+        static void ChangeReferenceType(BaseClass std2)
+            {
+            std2.MyString1 = "Steve";
             }
         }
     public class BaseClass : AbstractBaseClass
@@ -27,10 +54,10 @@
 
 
 
-        public string? NormalProperty1 { get { return stringField; }  set{}  }//this hiding baseclass property
+        public string? NormalProperty1 { get { return stringField; } set { } }//this hiding baseclass property
 
         //below also hiding baseclass property but using that property with local customization
-        public string? NormalProperty2 { get { return base.NormalProperty1; } set { base.NormalProperty1 = value+NormalProperty1+ base.MyString1; } }
+        public string? NormalProperty2 { get { return base.NormalProperty1; } set { base.NormalProperty1 = value + NormalProperty1 + base.MyString1; } }
 
 
         //public string? AbstractProperty1 { get; set; }//this is allowed but class expects must implemnt abstract method so below
