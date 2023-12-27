@@ -15,7 +15,7 @@
             BaseClass b = new BaseClass();
             b.MyPropertyInt = 100;
             Console.WriteLine("ReferenceType:Initially b.MyPropertyInt=" + b.MyPropertyInt);
-            ChangeReferenceType(b);
+            ChangeReferenceType(b);//no need to get return result & assign back to main object
             Console.WriteLine($"ReferenceType:Calling {nameof(ChangeReferenceType)}");
             Console.WriteLine($"ReferenceType:result={b.MyPropertyInt}");
             Console.WriteLine("-------------------------------------------------");
@@ -36,7 +36,7 @@
             }
         static void ChangeReferenceType(BaseClass std2)
             {
-            std2.MyPropertyInt = 200;
+            std2.MyPropertyInt = 200;//no need to return & assign back to main object
             }
         }
     public class BaseClass : AbstractBaseClass
