@@ -1,20 +1,42 @@
-﻿namespace POCs.OOPsConcepTsExploring
+﻿using System.Runtime.InteropServices;
+
+namespace POCs.OOPsConcepTsExploring
     {
     internal class Program
         {
         static void Main(string[] args)
             {
-            ValuetypeVsRefTypeTest();
+            //Test1ValuetypeVsRefTypeTest();
+            Test2SizeOf();
             //  b.NormalProperty2 = 1;
 
             // AbstractBaseClass a = new AbstractBaseClass();//1.not allowed to create abstract instance
             //  b.NormalProperty2 = 1;
             Console.ReadLine();
             }
-        #region valuetypeVsRefType
-        public static void ValuetypeVsRefTypeTest()
+
+        #region Test2SizeOf
+        public static void Test2SizeOf()
             {
-            Console.WriteLine($"Test1:{nameof(ValuetypeVsRefTypeTest)}");
+            Console.WriteLine(nameof(Test2SizeOf));
+            Console.WriteLine($"int occupies {sizeof(int)} bytes");//4
+            Console.WriteLine($"char occupies {sizeof(char)} bytes");//2
+            Console.WriteLine($"bool occupies {sizeof(bool)} bytes");//1
+            Console.WriteLine($"long occupies {sizeof(long)} bytes");//8
+            Console.WriteLine($"float occupies {sizeof(float)} bytes");//4
+            Console.WriteLine($"double occupies {sizeof(double)} bytes");//8
+            Console.WriteLine($"decimal occupies {sizeof(decimal)} bytes");//16
+
+            //BaseClass b = new BaseClass() { MyPropertyInt = 12 };
+            //Console.WriteLine($"{nameof(b.MyPropertyInt)} size:{Marshal.SizeOf(b)}");
+            Console.WriteLine();
+            Console.ReadLine();
+            }
+        #endregion Test2SizeOf
+        #region Test1ValuetypeVsRefTypeTest
+        public static void Test1ValuetypeVsRefTypeTest()
+            {
+            Console.WriteLine($"{nameof(Test1ValuetypeVsRefTypeTest)}");
             Console.WriteLine($"Step1:ValueType");
             int a1 = 10;
             Console.WriteLine($"Calling {nameof(ChangeValue)} with {nameof(a1)}:{a1}");
@@ -43,7 +65,7 @@
             Console.WriteLine();
             Console.ReadLine();
             }
-        #endregion valuetypeVsRefType
+        #endregion Test1ValuetypeVsRefTypeTest
 
         }
 
