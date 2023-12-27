@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace POCs.OOPsConcepTsExploring
     {
@@ -16,16 +19,47 @@ namespace POCs.OOPsConcepTsExploring
             }
 
         #region Test2SizeOf
+        /// <summary>
+        /// Test2SizeOf
+        ///sizeof can be used for predefined size only,so string ,class is not possible.Instead value types are allowed at runtime
+        ///byte occupies 1 bytes
+        ///bool occupies 1 bytes range True => False
+        ///char occupies 2 bytes range single character 'a'-'z'-'0'-'9'-','
+        ///short occupies 2 bytes range  -32768 => 32767
+        ///int occupies 4 bytes range  -2147483648 => 2147483647
+        ///float occupies 4 bytes range  -3.4028235E+38 => 3.4028235E+38
+        ///long occupies 8 bytes range   -9223372036854775808  =>  9223372036854775807
+        ///double occupies 8 bytes range   -1.7976931348623157E+308  =>  1.7976931348623157E+308
+        ///decimal occupies 16 bytes range   -79228162514264337593543950335  =>  79228162514264337593543950335
+        ///{ sizeof(string)} is not possible as 'string' does not have a predefined size
+        ///            {sizeof(PointStructure)
+        ///        }
+        ///    bytes now working need to check TODO
+        ///            PointStructure size is: 24 bytes
+        /// </summary>
         public static void Test2SizeOf()
             {
             Console.WriteLine(nameof(Test2SizeOf));
-            Console.WriteLine($"int occupies {sizeof(int)} bytes");//4
-            Console.WriteLine($"char occupies {sizeof(char)} bytes");//2
-            Console.WriteLine($"bool occupies {sizeof(bool)} bytes");//1
-            Console.WriteLine($"long occupies {sizeof(long)} bytes");//8
-            Console.WriteLine($"float occupies {sizeof(float)} bytes");//4
-            Console.WriteLine($"double occupies {sizeof(double)} bytes");//8
-            Console.WriteLine($"decimal occupies {sizeof(decimal)} bytes");//16
+            Console.WriteLine("sizeof can be used for predefined size only,so string ,class is not possible.Instead value types are allowed at runtime");
+            Console.WriteLine($"byte occupies {sizeof(byte)} bytes ");//1
+            Console.WriteLine($"bool occupies {sizeof(bool)} bytes range {bool.TrueString} => {bool.FalseString}");//1
+            char a0 = 'a';
+            a0 = ',';
+            Console.WriteLine($"char occupies {sizeof(char)} bytes range single character 'a'-'z'-'0'-'9'-','");//2
+            Console.WriteLine($"short occupies {sizeof(short)} bytes range  {short.MinValue} => {short.MaxValue}");//4
+            Console.WriteLine($"int occupies {sizeof(int)} bytes range  {int.MinValue} => {int.MaxValue} ");//4
+            Console.WriteLine($"float occupies {sizeof(float)} bytes range  {float.MinValue} => {float.MaxValue} ");//4
+            Console.WriteLine($"long occupies {sizeof(long)} bytes range   {long.MinValue}  =>  {long.MaxValue}  ");//8
+            Console.WriteLine($"double occupies {sizeof(double)} bytes range   {double.MinValue}  =>  {double.MaxValue}  ");//8
+            Console.WriteLine($"decimal occupies {sizeof(decimal)} bytes range   {decimal.MinValue}  =>  {decimal.MaxValue}  ");//16
+
+
+            Console.WriteLine("{sizeof(string)} is not possible as 'string' does not have a predefined size");
+            //'string' does not have a predefined size, therefore sizeof can only be used in an unsafe context 
+
+            Console.WriteLine("{sizeof(PointStructure)} bytes now working need to check TODO");
+            int size = System.Runtime.InteropServices.Marshal.SizeOf(typeof(PointStructure));
+            Console.WriteLine($"{nameof(PointStructure)} size is: {size} bytes");
 
             //BaseClass b = new BaseClass() { MyPropertyInt = 12 };
             //Console.WriteLine($"{nameof(b.MyPropertyInt)} size:{Marshal.SizeOf(b)}");
@@ -108,5 +142,14 @@ namespace POCs.OOPsConcepTsExploring
         public string? NormalProperty2 { get; set; }
         public abstract string? AbstractProperty1 { get; set; }
         public abstract string? AbstractProperty2 { get; set; }
+        }
+
+    public struct PointStructure
+        {
+        public PointStructure(byte tag, double x, double y) => (Tag, X, Y) = (tag, x, y);
+
+        public byte Tag { get; }
+        public double X { get; }
+        public double Y { get; }
         }
     }
