@@ -4,8 +4,17 @@
         {
         static void Main(string[] args)
             {
-            #region valuetypeVsRefType
-            Console.WriteLine("Test1:Value type vs Ref type");
+            ValuetypeVsRefTypeTest();
+            //  b.NormalProperty2 = 1;
+
+            // AbstractBaseClass a = new AbstractBaseClass();//1.not allowed to create abstract instance
+            //  b.NormalProperty2 = 1;
+            Console.ReadLine();
+            }
+        #region valuetypeVsRefType
+        public static void ValuetypeVsRefTypeTest()
+            {
+            Console.WriteLine($"Test1:{nameof(ValuetypeVsRefTypeTest)}");
             Console.WriteLine($"Step1:ValueType");
             int a1 = 10;
             Console.WriteLine($"Calling {nameof(ChangeValue)} with {nameof(a1)}:{a1}");
@@ -33,15 +42,9 @@
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine();
             Console.ReadLine();
-            #endregion valuetypeVsRefType
-            //  b.NormalProperty2 = 1;
-
-            // AbstractBaseClass a = new AbstractBaseClass();//1.not allowed to create abstract instance
-            //  b.NormalProperty2 = 1;
-            Console.ReadLine();
             }
-       
-       
+        #endregion valuetypeVsRefType
+
         }
 
     public class BaseClass : AbstractBaseClass
