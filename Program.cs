@@ -20,12 +20,13 @@
             Console.WriteLine($"ReferenceType:result={b.MyPropertyInt}");
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine();
+            Console.ReadLine();
             #endregion valuetypeVsRefType
             //  b.NormalProperty2 = 1;
 
             // AbstractBaseClass a = new AbstractBaseClass();//1.not allowed to create abstract instance
             //  b.NormalProperty2 = 1;
-            Console.WriteLine("Hello, World!");
+            Console.ReadLine();
             }
         static void ChangeValue(int x)
             {
