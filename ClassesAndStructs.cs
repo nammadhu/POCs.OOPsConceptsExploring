@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace POCs.OOPsConceptsExploring
     {
-    public class ClassesAndStructs
+    public partial class ClassesAndStructs
         {
 
+    
         public class SimpleClass
             {
             public int SimpleClassInt { get; set; } = 3;
@@ -45,7 +46,7 @@ namespace POCs.OOPsConceptsExploring
                 {
                 Console.WriteLine($"Am from {nameof(BaseClass)}-constructor");
                 }
-            public BaseClass(int a):base(a)//
+            public BaseClass(int a) : base(a)//
                 {
                 Console.WriteLine($"Am from {nameof(BaseClass)}-constructor with parameter:{a}");
                 }
@@ -126,7 +127,7 @@ namespace POCs.OOPsConceptsExploring
                 {
                 Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Constructor with int a:{a}");
                 }
-            public AbstractBaseClass(string a):this()
+            public AbstractBaseClass(string a) : this()
                 {
                 Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Constructor with int a:{a}");
                 }
