@@ -16,13 +16,15 @@ namespace POCs.OOPsConcepTsExploring
         {
         static void Main(string[] args)
             {
-            Test0MemoryStackAndHeap();
-            Test1ValuetypeVsRefTypeTest();
-            Test2SizeOf();
-            Test3ConstructorCreationFlow();
-            Test4ReferenceTypeChanges();
-            Test5Inheritance();
-            Test6DeepCopyShallowCopy();
+            //Test0MemoryStackAndHeap();
+            //Test1ValuetypeVsRefTypeTest();
+            //Test2SizeOf();
+            //Test3ConstructorCreationFlow();
+            //Test4ReferenceTypeChanges();
+            //Test5Inheritance();
+            //Test6DeepCopyShallowCopy();
+            Test7EqualOperators();
+
 
             //  b.NormalProperty2 = 1;
 
