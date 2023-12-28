@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using POCs.OOPsConcepTsExploring;
 using POCs.OOPsConceptsExploring;
+using System.Net;
 
 namespace POCs.OOPsConcepTsExploring
     {
@@ -34,12 +35,12 @@ namespace POCs.OOPsConcepTsExploring
             d1.MyString = "n1";
             Console.WriteLine();
             Console.WriteLine($"d1.MyString:{d1.MyString},d1.SimpleClass1.SimpleClassString:{d1.SimpleClass1.SimpleClassString}");
-            Console.WriteLine("Doing Shallowcopy by var d2 = (DerivedClass)d1.Shallowcopy()");
-            var d2 = (DerivedClass)d1.Shallowcopy(); //or d1.Shallowcopy() as DerivedClass
+            Console.WriteLine("Doing ShallowCopy by var d2 = (DerivedClass)d1.ShallowCopy()");
+            var d2 = (DerivedClass)d1.ShallowCopy(); //or d1.ShallowCopy() as DerivedClass
             Console.WriteLine($"d1.MyString:{d1.MyString},d1.SimpleClass1.SimpleClassString:{d1.SimpleClass1.SimpleClassString}");
             Console.WriteLine($"d2.MyString:{d2.MyString},d2.SimpleClass1.SimpleClassString:{d2.SimpleClass1.SimpleClassString}");
-    
-            d2.MyString = "new string2";
+
+            d2.MyString = "n2";
             d2.SimpleClass1.SimpleClassString = "new string2222";
             Console.WriteLine();
             Console.WriteLine("Assigned d2.MyString = \"new string2\" & d2.SimpleClass1.SimpleClassString = \"new string2222\" then as below");
@@ -53,6 +54,22 @@ namespace POCs.OOPsConcepTsExploring
             Console.WriteLine();
             Console.WriteLine();
 
+            Console.WriteLine("Step2:DeepCopy");
+            Console.WriteLine("Since in deepcopy reference types are not created new object so had to do those reference additionally");
+            Console.WriteLine("Doing ShallowCopy by var d3 = (DerivedClass)d1.ShallowCopy()");
+            var d3 = (DerivedClass)d1.DeepCopy();
+            Console.WriteLine($"d1.MyString:{d1.MyString},d1.SimpleClass1.SimpleClassString:{d1.SimpleClass1.SimpleClassString}");
+            Console.WriteLine($"d3.MyString:{d3.MyString},d3.SimpleClass1.SimpleClassString:{d3.SimpleClass1.SimpleClassString}");
+
+            d3.MyString = "n3";
+            d3.SimpleClass1.SimpleClassString = "new string333";
+            Console.WriteLine();
+            Console.WriteLine("Assigned d3.MyString = \"new string3\" & d3.SimpleClass1.SimpleClassString = \"new string333\" then as below");
+            Console.WriteLine($"d1.MyString:{d1.MyString},d1.SimpleClass1.SimpleClassString:{d1.SimpleClass1.SimpleClassString}");
+            Console.WriteLine($"d3.MyString:{d3.MyString},d3.SimpleClass1.SimpleClassString:{d3.SimpleClass1.SimpleClassString}");
+
+            Console.WriteLine();
+            Console.WriteLine("Conclusion Deep copy expected to create all new references & total new");
             }
         #endregion Test6DeepCopyShallowCopy
         #region Test5Inheritance
@@ -268,10 +285,14 @@ namespace POCs.OOPsConcepTsExploring
         public int SimpleClassInt { get; set; } = 3;
 
         public string? SimpleClassString { get; set; } = "default Madhu";
+        public SimpleClass GetClone()
+            {
+            return (SimpleClass)this.MemberwiseClone();
+            }
         }
     public class DerivedClass : BaseClass
         {
-        public SimpleClass SimpleClass1 { get; set; } = new SimpleClass();
+
         public DerivedClass()
             {
             DerivedProperty1 = $"{nameof(DerivedProperty1)} from {nameof(DerivedClass)}";
@@ -334,6 +355,7 @@ namespace POCs.OOPsConcepTsExploring
 
     public abstract class AbstractBaseClass : IDisposable
         {
+        public SimpleClass SimpleClass1 { get; set; } = new SimpleClass();
         public AbstractBaseClass()
             {
             Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Constructor ");
@@ -342,9 +364,15 @@ namespace POCs.OOPsConcepTsExploring
             {
             Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Destructor");
             }
-        public object Shallowcopy()
+        public object ShallowCopy()
             {
             return this.MemberwiseClone();
+            }
+        public object DeepCopy()
+            {
+            var o = (AbstractBaseClass)this.MemberwiseClone();
+            o.SimpleClass1 = SimpleClass1.GetClone();
+            return o;
             }
         public void Dispose()
             {
