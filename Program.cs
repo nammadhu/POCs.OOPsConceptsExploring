@@ -23,6 +23,24 @@ namespace POCs.OOPsConcepTsExploring
             //  b.NormalProperty2 = 1;
             Console.ReadLine();
             }
+
+        #region Test5Inheritance
+        public static void Test5Inheritance()
+            {
+            BaseClass b1 = new BaseClass();
+            DerivedClass d1 = new DerivedClass();
+            Console.WriteLine(d1.DerivedProperty1);
+            b1 = d1;//when this happens DerivedProperty1 will not be accessible
+            Console.WriteLine(d1.DerivedProperty1);
+
+            }
+        #endregion Test4Inheritance
+        #region Test4DeepCopyShallowCopy
+        public void Test4DeepCopyShallowCopy()
+            {
+
+            }
+        #endregion Test4DeepCopyShallowCopy
         #region Test4ReferenceTypeChanges
         public static void Test4ReferenceTypeChanges()
             {
@@ -94,23 +112,7 @@ namespace POCs.OOPsConcepTsExploring
             Console.WriteLine();
             }
         #endregion Test4ReferenceTypeChanges
-        #region Test5Inheritance
-        public static void Test5Inheritance()
-            {
-            BaseClass b1 = new BaseClass();
-            DerivedClass d1 = new DerivedClass();
-            Console.WriteLine(d1.DerivedProperty1);
-            b1 = d1;//when this happens DerivedProperty1 will not be accessible
-            Console.WriteLine(d1.DerivedProperty1);
 
-            }
-        #endregion Test4Inheritance
-        #region Test4DeepCopyShallowCopy
-        public void Test4DeepCopyShallowCopy()
-            {
-
-            }
-        #endregion Test4DeepCopyShallowCopy
         #region Test3ConstructorCreationFlow
         public static void Test3ConstructorCreationFlow()
             {
