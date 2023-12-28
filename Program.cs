@@ -17,7 +17,7 @@ namespace POCs.OOPsConcepTsExploring
         static void Main(string[] args)
             {
             //Test0MemoryStackAndHeap();
-            //Test1ValuetypeVsRefTypeTest();
+            Test1ValuetypeVsRefTypeTest();
             //Test2SizeOf();
             //Test3ConstructorCreationFlow();
             //Test4ReferenceTypeChanges();
@@ -25,13 +25,9 @@ namespace POCs.OOPsConcepTsExploring
             //Test5InheritanceType2();
             //Test6DeepCopyShallowCopy();
             //Test7EqualOperators();
-            Test8InterfaceClass();
+            //Test8InterfaceClass();
 
-            //  b.NormalProperty2 = 1;
-
-            // AbstractBaseClass a = new AbstractBaseClass();//1.not allowed to create abstract instance
-            //  b.NormalProperty2 = 1;
-            Console.ReadLine();
+              Console.ReadLine();
             }
       
         }

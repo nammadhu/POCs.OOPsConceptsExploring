@@ -24,8 +24,20 @@ namespace POCs.OOPsConceptsExploring
                 x = 200;
                 Console.WriteLine($"{nameof(ChangeValue)}: After {x}");
                 }
+            static void ChangeValueString(string xx)
+                {
+                Console.WriteLine($"{nameof(ChangeValue)}: Before {xx}");
+                xx = "newXXXXXX";
+                Console.WriteLine($"{nameof(ChangeValue)}: After {xx}");
+                }
             ChangeValue(a1);
-            Console.WriteLine($"result={a1}");
+            Console.WriteLine($"but back in source={a1}");
+            var a2 = "oldaaaa";
+            Console.WriteLine("Trying with string (eventhough string is value type but woirks like this) a2:" + a2);
+            ChangeValueString(a2);
+            Console.WriteLine($"but back in source={a2}");
+
+
             Console.WriteLine();
             Console.WriteLine($"Step2:ReferenceType");
             BaseClass b = new BaseClass();
@@ -38,11 +50,11 @@ namespace POCs.OOPsConceptsExploring
                 }
             Console.WriteLine($"Calling {nameof(ChangeReferenceType)} with {nameof(b.MyPropertyInt)}:{b.MyPropertyInt}");
             ChangeReferenceType(b);//no need to get return result & assign back to main object
-            Console.WriteLine($"result={b.MyPropertyInt}");
+            Console.WriteLine($"but back in source={b.MyPropertyInt}");
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine();
             Console.ReadLine();
             }
         #endregion Test1ValuetypeVsRefTypeTest
-}
+        }
     }
