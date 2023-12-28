@@ -6,6 +6,8 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using POCs.OOPsConcepTsExploring;
 using POCs.OOPsConceptsExploring;
 using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace POCs.OOPsConcepTsExploring
     {
@@ -70,6 +72,9 @@ namespace POCs.OOPsConcepTsExploring
 
             Console.WriteLine();
             Console.WriteLine("Conclusion Deep copy expected to create all new references & total new");
+            Console.WriteLine("Other ways are by CLone, Serialization...");
+            Console.WriteLine();
+            Console.WriteLine();
             }
         #endregion Test6DeepCopyShallowCopy
         #region Test5Inheritance
@@ -289,6 +294,16 @@ namespace POCs.OOPsConcepTsExploring
             {
             return (SimpleClass)this.MemberwiseClone();
             }
+
+        public object Clone()
+            {
+            return new SimpleClass
+                {
+                SimpleClassInt = SimpleClassInt,
+                SimpleClassString = SimpleClassString
+                };
+            }
+
         }
     public class DerivedClass : BaseClass
         {
@@ -305,6 +320,17 @@ namespace POCs.OOPsConcepTsExploring
         public BaseClass()//
             {
             Console.WriteLine($"Am from {nameof(BaseClass)}-constructor");
+            }
+        public object Clone()
+            {
+            return new BaseClass//since here cant create new so doing it on next level BaseClass
+                {
+                SimpleClass1 = (SimpleClass)SimpleClass1.Clone(),
+                MyPropertyInt = MyPropertyInt,
+                MyString = MyString,
+                MyStringProperty = MyStringProperty
+                //IF remaining are not done then it will be omitted so may be other option like memberwiseclone & mix of this CLone()
+                };
             }
         //BaseClass(int a)//
         //    {
@@ -371,10 +397,18 @@ namespace POCs.OOPsConcepTsExploring
         public object DeepCopy()
             {
             var o = (AbstractBaseClass)this.MemberwiseClone();
-            o.SimpleClass1 = SimpleClass1.GetClone();
+            o.SimpleClass1 = SimpleClass1.GetClone();//if this is not exists then it becomes same ref changes & same like shallow copy
             return o;
             }
-        public void Dispose()
+        //public object Clone()
+        //    {
+        //    return new AbstractBaseClass//since here cant create new so doing it on next level BaseClass
+        //        {
+        //        SimpleClass1 = SimpleClassInt,
+        //        SimpleClassString = SimpleClassString
+        //        };
+        //    }
+    public void Dispose()
             {
             Console.WriteLine($"Dispose called of {nameof(AbstractBaseClass)}");
             }
