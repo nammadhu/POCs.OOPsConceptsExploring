@@ -12,6 +12,7 @@ namespace POCs.OOPsConcepTsExploring
         {
         static void Main(string[] args)
             {
+            //Test0MemoryStackAndHeap();
             //Test1ValuetypeVsRefTypeTest();
             //Test2SizeOf();
             //Test3ConstructorCreationFlow();
@@ -23,7 +24,12 @@ namespace POCs.OOPsConcepTsExploring
             //  b.NormalProperty2 = 1;
             Console.ReadLine();
             }
+        #region Test6DeepCopyShallowCopy
+        public void Test6DeepCopyShallowCopy()
+            {
 
+            }
+        #endregion Test6DeepCopyShallowCopy
         #region Test5Inheritance
         public static void Test5Inheritance()
             {
@@ -35,12 +41,7 @@ namespace POCs.OOPsConcepTsExploring
 
             }
         #endregion Test4Inheritance
-        #region Test4DeepCopyShallowCopy
-        public void Test4DeepCopyShallowCopy()
-            {
-
-            }
-        #endregion Test4DeepCopyShallowCopy
+        
         #region Test4ReferenceTypeChanges
         public static void Test4ReferenceTypeChanges()
             {
@@ -122,6 +123,7 @@ namespace POCs.OOPsConcepTsExploring
                 }
             }
         #endregion Test3ConstructorCreationFlow
+
         #region Test2SizeOf
         /// <summary>
         /// Test2SizeOf
@@ -181,6 +183,7 @@ namespace POCs.OOPsConcepTsExploring
             Console.ReadLine();
             }
         #endregion Test2SizeOf
+
         #region Test1ValuetypeVsRefTypeTest
         public static void Test1ValuetypeVsRefTypeTest()
             {
@@ -215,6 +218,24 @@ namespace POCs.OOPsConcepTsExploring
             }
         #endregion Test1ValuetypeVsRefTypeTest
 
+        #region Test0MemoryStackAndHeap
+        public static void Test0MemoryStackAndHeap() 
+            {
+            int x = 5; // x is a local variable and is stored on the stack
+
+            // y is a reference to an object and is stored on the stack
+            // the object itself is stored on the heap
+            string y = new string("hello");
+
+            // z is a reference to the same object as y
+            // both y and z are stored on the stack, but the object is only stored once on the heap
+            string z = y;
+
+            // the object referenced by y and z is no longer needed, so the garbage collector will deallocate the memory on the heap
+            y = null;
+            z = null;
+            }
+        #endregion Test0MemoryStackAndHeap
         }
 
     public class DerivedClass : BaseClass
