@@ -16,7 +16,9 @@ namespace POCs.OOPsConcepTsExploring
             //Test1ValuetypeVsRefTypeTest();
             //Test2SizeOf();
             //Test3ConstructorCreationFlow();
-            Test4ReferenceTypeChanges();
+            //Test4ReferenceTypeChanges();
+            //Test5Inheritance
+            Test6DeepCopyShallowCopy();
 
             //  b.NormalProperty2 = 1;
 
@@ -25,8 +27,31 @@ namespace POCs.OOPsConcepTsExploring
             Console.ReadLine();
             }
         #region Test6DeepCopyShallowCopy
-        public void Test6DeepCopyShallowCopy()
+        public static void Test6DeepCopyShallowCopy()
             {
+            Console.WriteLine("Step1:ShallowCopy");
+            DerivedClass d1 = new DerivedClass();
+            d1.MyString = "n1";
+            Console.WriteLine();
+            Console.WriteLine($"d1.MyString:{d1.MyString},d1.SimpleClass1.SimpleClassString:{d1.SimpleClass1.SimpleClassString}");
+            Console.WriteLine("Doing Shallowcopy by var d2 = (DerivedClass)d1.Shallowcopy()");
+            var d2 = (DerivedClass)d1.Shallowcopy(); //or d1.Shallowcopy() as DerivedClass
+            Console.WriteLine($"d1.MyString:{d1.MyString},d1.SimpleClass1.SimpleClassString:{d1.SimpleClass1.SimpleClassString}");
+            Console.WriteLine($"d2.MyString:{d2.MyString},d2.SimpleClass1.SimpleClassString:{d2.SimpleClass1.SimpleClassString}");
+    
+            d2.MyString = "new string2";
+            d2.SimpleClass1.SimpleClassString = "new string2222";
+            Console.WriteLine();
+            Console.WriteLine("Assigned d2.MyString = \"new string2\" & d2.SimpleClass1.SimpleClassString = \"new string2222\" then as below");
+            Console.WriteLine($"d1.MyString:{d1.MyString},d1.SimpleClass1.SimpleClassString:{d1.SimpleClass1.SimpleClassString}");
+            Console.WriteLine($"d2.MyString:{d2.MyString},d2.SimpleClass1.SimpleClassString:{d2.SimpleClass1.SimpleClassString}");
+
+            Console.WriteLine();
+            Console.WriteLine("On Shallow copy,there are 2 different types behaviour for value & reference type");
+            Console.WriteLine("Value type:creates new copy & no reference back");
+            Console.WriteLine("ReferenceType:Retains same reference,any changes to any ref will reflect to all");
+            Console.WriteLine();
+            Console.WriteLine();
 
             }
         #endregion Test6DeepCopyShallowCopy
@@ -41,7 +66,7 @@ namespace POCs.OOPsConcepTsExploring
 
             }
         #endregion Test4Inheritance
-        
+
         #region Test4ReferenceTypeChanges
         public static void Test4ReferenceTypeChanges()
             {
@@ -79,7 +104,7 @@ namespace POCs.OOPsConcepTsExploring
             Console.WriteLine();
             var d3 = d2;
             var d4 = d3;
-            var d5= d4;
+            var d5 = d4;
             Console.WriteLine("d3=d2;d4=d3;d5=d4;");
             Console.WriteLine("Assigning d5.DerivedProperty1 = \"New55\"");
             d5.DerivedProperty1 = "New55";
@@ -219,7 +244,7 @@ namespace POCs.OOPsConcepTsExploring
         #endregion Test1ValuetypeVsRefTypeTest
 
         #region Test0MemoryStackAndHeap
-        public static void Test0MemoryStackAndHeap() 
+        public static void Test0MemoryStackAndHeap()
             {
             int x = 5; // x is a local variable and is stored on the stack
 
@@ -238,8 +263,15 @@ namespace POCs.OOPsConcepTsExploring
         #endregion Test0MemoryStackAndHeap
         }
 
+    public class SimpleClass
+        {
+        public int SimpleClassInt { get; set; } = 3;
+
+        public string? SimpleClassString { get; set; } = "default Madhu";
+        }
     public class DerivedClass : BaseClass
         {
+        public SimpleClass SimpleClass1 { get; set; } = new SimpleClass();
         public DerivedClass()
             {
             DerivedProperty1 = $"{nameof(DerivedProperty1)} from {nameof(DerivedClass)}";
@@ -309,6 +341,10 @@ namespace POCs.OOPsConcepTsExploring
         ~AbstractBaseClass()
             {
             Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Destructor");
+            }
+        public object Shallowcopy()
+            {
+            return this.MemberwiseClone();
             }
         public void Dispose()
             {
