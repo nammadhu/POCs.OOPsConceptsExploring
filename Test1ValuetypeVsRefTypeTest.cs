@@ -33,7 +33,7 @@ namespace POCs.OOPsConceptsExploring
             ChangeValue(a1);
             Console.WriteLine($"but back in source={a1}");
             var a2 = "oldaaaa";
-            Console.WriteLine("Trying with string (eventhough string is value type but woirks like this) a2:" + a2);
+            Console.WriteLine("Trying with string (eventhough string is value type but it always pass by value default) a2:" + a2);
             ChangeValueString(a2);
             Console.WriteLine($"but back in source={a2}");
 
