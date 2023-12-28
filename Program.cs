@@ -71,8 +71,27 @@ namespace POCs.OOPsConcepTsExploring
             Console.WriteLine("d5.DerivedProperty1:" + d5.DerivedProperty1);
 
             Console.WriteLine();
-            Console.WriteLine("Conclusion Any change to reference anywhere it reflects back to all");
+            Console.WriteLine($"{nameof(ChangeReferenceType)} and changing to \"New54321\"");
+            static void ChangeReferenceType(DerivedClass std2)
+                {
+                Console.WriteLine($"{nameof(ChangeReferenceType)}: Before {std2.DerivedProperty1}");
+                std2.DerivedProperty1 = "New54321";//no need to return & assign back to main object
+                Console.WriteLine($"{nameof(ChangeReferenceType)}: After {std2.DerivedProperty1}");
+                }
+            ChangeReferenceType(d3);
+            Console.WriteLine("d1.DerivedProperty1:" + d1.DerivedProperty1);
+            Console.WriteLine("d2.DerivedProperty1:" + d2.DerivedProperty1);
+            Console.WriteLine("d3.DerivedProperty1:" + d3.DerivedProperty1);
+            Console.WriteLine("d4.DerivedProperty1:" + d4.DerivedProperty1);
+            Console.WriteLine("d5.DerivedProperty1:" + d5.DerivedProperty1);
 
+            Console.WriteLine();
+            Console.WriteLine("Conclusion Any change to reference anywhere it reflects back to all");
+            Console.WriteLine();
+            Console.WriteLine("More info below");
+            Test1ValuetypeVsRefTypeTest();
+            Console.WriteLine();
+            Console.WriteLine();
             }
         #endregion Test4ReferenceTypeChanges
         #region Test5Inheritance
