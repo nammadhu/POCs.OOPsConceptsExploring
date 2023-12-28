@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using POCs.OOPsConcepTsExploring;
+using POCs.OOPsConceptsExploring;
 
 namespace POCs.OOPsConcepTsExploring
     {
@@ -10,14 +13,94 @@ namespace POCs.OOPsConcepTsExploring
         static void Main(string[] args)
             {
             //Test1ValuetypeVsRefTypeTest();
-            Test2SizeOf();
+            //Test2SizeOf();
+            //Test3ConstructorCreationFlow();
+            Test4ReferenceTypeChanges();
+
             //  b.NormalProperty2 = 1;
 
             // AbstractBaseClass a = new AbstractBaseClass();//1.not allowed to create abstract instance
             //  b.NormalProperty2 = 1;
             Console.ReadLine();
             }
+        #region Test4ReferenceTypeChanges
+        public static void Test4ReferenceTypeChanges()
+            {
+            BaseClass b1 = new BaseClass();
+            DerivedClass d1 = new DerivedClass();
+            Console.WriteLine("d1.DerivedProperty1:" + d1.DerivedProperty1);
+            b1 = d1;//when this happens DerivedProperty1 will not be accessible
+            Console.WriteLine("d1.DerivedProperty1:" + d1.DerivedProperty1);
 
+            Console.WriteLine();
+            Console.WriteLine("Reference type proeprty changes(derived to base class assigned): b1=d1; then");
+            Console.WriteLine("Before");
+            Console.WriteLine("b1.AbstractProperty1:" + b1.AbstractProperty1);
+            Console.WriteLine("d1.AbstractProperty1:" + d1.AbstractProperty1);
+            b1.AbstractProperty1 = "new1";
+            Console.WriteLine("b1.AbstractProperty1 = \"new1\" Assigned then");
+            Console.WriteLine("b1.AbstractProperty1:" + b1.AbstractProperty1);
+            Console.WriteLine("d1.AbstractProperty1:" + d1.AbstractProperty1);
+            Console.WriteLine();
+
+            Console.WriteLine("Reference type proeprty changes(derived to derived same class assigned): d1=d2; then");
+            var d2 = d1;
+            Console.WriteLine("since d2=d1,so both all same");
+            Console.WriteLine("d2.DerivedProperty1:" + d2.DerivedProperty1);
+            Console.WriteLine("d1.DerivedProperty1:" + d1.DerivedProperty1);
+            Console.WriteLine("Assigning d2.DerivedProperty1 = \"New2\"");
+            d2.DerivedProperty1 = "New2";
+            Console.WriteLine("d2.DerivedProperty1:" + d2.DerivedProperty1);
+            Console.WriteLine("d1.DerivedProperty1:" + d1.DerivedProperty1);
+            Console.WriteLine();
+            Console.WriteLine("Assigning d1.DerivedProperty1 = \"New11\"");
+            d1.DerivedProperty1 = "New11";
+            Console.WriteLine("d2.DerivedProperty1:" + d2.DerivedProperty1);
+            Console.WriteLine("d1.DerivedProperty1:" + d1.DerivedProperty1);
+            Console.WriteLine();
+            var d3 = d2;
+            var d4 = d3;
+            var d5= d4;
+            Console.WriteLine("d3=d2;d4=d3;d5=d4;");
+            Console.WriteLine("Assigning d5.DerivedProperty1 = \"New55\"");
+            d5.DerivedProperty1 = "New55";
+            Console.WriteLine("d1.DerivedProperty1:" + d1.DerivedProperty1);
+            Console.WriteLine("d2.DerivedProperty1:" + d2.DerivedProperty1);
+            Console.WriteLine("d3.DerivedProperty1:" + d3.DerivedProperty1);
+            Console.WriteLine("d4.DerivedProperty1:" + d4.DerivedProperty1);
+            Console.WriteLine("d5.DerivedProperty1:" + d5.DerivedProperty1);
+
+            Console.WriteLine();
+            Console.WriteLine("Conclusion Any change to reference anywhere it reflects back to all");
+
+            }
+        #endregion Test4ReferenceTypeChanges
+        #region Test5Inheritance
+        public static void Test5Inheritance()
+            {
+            BaseClass b1 = new BaseClass();
+            DerivedClass d1 = new DerivedClass();
+            Console.WriteLine(d1.DerivedProperty1);
+            b1 = d1;//when this happens DerivedProperty1 will not be accessible
+            Console.WriteLine(d1.DerivedProperty1);
+
+            }
+        #endregion Test4Inheritance
+        #region Test4DeepCopyShallowCopy
+        public void Test4DeepCopyShallowCopy()
+            {
+
+            }
+        #endregion Test4DeepCopyShallowCopy
+        #region Test3ConstructorCreationFlow
+        public static void Test3ConstructorCreationFlow()
+            {
+            using (BaseClass b1 = new BaseClass())
+                {
+                Console.WriteLine(b1.MyString1);
+                }
+            }
+        #endregion Test3ConstructorCreationFlow
         #region Test2SizeOf
         /// <summary>
         /// Test2SizeOf
@@ -113,9 +196,29 @@ namespace POCs.OOPsConcepTsExploring
 
         }
 
-    public class BaseClass : AbstractBaseClass
+    public class DerivedClass : BaseClass
         {
-
+        public DerivedClass()
+            {
+            DerivedProperty1 = $"{nameof(DerivedProperty1)} from {nameof(DerivedClass)}";
+            Console.WriteLine($"Am from {nameof(DerivedClass)}-constructor");
+            }
+        public string? DerivedProperty1 { get; set; }
+        }
+    public class BaseClass : AbstractBaseClass, IDisposable
+        {
+        public BaseClass()//
+            {
+            Console.WriteLine($"Am from {nameof(BaseClass)}-constructor");
+            }
+        //BaseClass(int a)//
+        //    {
+        //    Console.WriteLine($"Am from {nameof(BaseClass)}-constructor");
+        //    }
+        ~BaseClass()//no access specifiers for Destructor
+            {
+            Console.WriteLine($"Am from {nameof(BaseClass)}-Destructor");
+            }
         public int MyPropertyInt { get; set; }
         private string stringField = "From Base class private stringField";//encapsulation
         private string stringFieldOther = "From Base class private stringFieldOther";//encapsulation
@@ -139,10 +242,36 @@ namespace POCs.OOPsConcepTsExploring
         public override string? AbstractProperty1 { get; set; }
         public override string? AbstractProperty2 { get; set; }
 
+        public new void NormalMethod1()
+            {
+            base.NormalMethod1();
+            Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-{nameof(NormalMethod1)} & ");
+            }
+        public override void AbstractMethod()
+            {
+            Console.WriteLine($"Am from {nameof(BaseClass)}-{nameof(AbstractMethod)} ");
+            }
+
+        public void Dispose()
+            {
+            Console.WriteLine($"Dispose called of {nameof(BaseClass)}");
+            }
         }
 
-    public abstract class AbstractBaseClass
+    public abstract class AbstractBaseClass : IDisposable
         {
+        public AbstractBaseClass()
+            {
+            Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Constructor ");
+            }
+        ~AbstractBaseClass()
+            {
+            Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Destructor");
+            }
+        public void Dispose()
+            {
+            Console.WriteLine($"Dispose called of {nameof(AbstractBaseClass)}");
+            }
         private string stringField = "From Abstract class private stringField";//encapsulation
         private string stringFieldOther = "From Abstract class private stringFieldOther";//encapsulation
 
@@ -152,6 +281,16 @@ namespace POCs.OOPsConcepTsExploring
         public string? NormalProperty2 { get; set; }
         public abstract string? AbstractProperty1 { get; set; }
         public abstract string? AbstractProperty2 { get; set; }
+        public void NormalMethod1()
+            {
+            Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-{nameof(NormalMethod1)} ");
+            }
+        public void NormalMethod2()
+            {
+            Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-{nameof(NormalMethod2)} ");
+            }
+        public abstract void AbstractMethod();//no definition or body,but this must be implemented later
+
         }
 
     public struct PointStructure
@@ -162,4 +301,5 @@ namespace POCs.OOPsConcepTsExploring
         public double X { get; }
         public double Y { get; }
         }
+
     }
