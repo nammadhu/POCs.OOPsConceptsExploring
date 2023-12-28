@@ -21,19 +21,25 @@ namespace POCs.OOPsConcepTsExploring
         #region Test2SizeOf
         /// <summary>
         /// Test2SizeOf
-        ///sizeof can be used for predefined size only,so string ,class is not possible.Instead value types are allowed at runtime
-        ///byte occupies 1 bytes
-        ///bool occupies 1 bytes range True => False
-        ///char occupies 2 bytes range single character 'a'-'z'-'0'-'9'-','
-        ///short occupies 2 bytes range  -32768 => 32767
-        ///int occupies 4 bytes range  -2147483648 => 2147483647
-        ///float occupies 4 bytes range  -3.4028235E+38 => 3.4028235E+38
-        ///long occupies 8 bytes range   -9223372036854775808  =>  9223372036854775807
-        ///double occupies 8 bytes range   -1.7976931348623157E+308  =>  1.7976931348623157E+308
-        ///decimal occupies 16 bytes range   -79228162514264337593543950335  =>  79228162514264337593543950335
-        ///{ sizeof(string)} is not possible as 'string' does not have a predefined size
-        ///            {sizeof(PointStructure)
-        ///        }
+        ///C# adatetypes and its sizes
+        ///Type	Bytes	Range
+        ///byte	1	0 to 255
+        ///sbyte	1	-128 to 127
+        ///short	2	-32,768 to 32,767
+        ///ushort	2	0 to 65,535
+        ///int	4	-2 billion to 2 billion
+        ///uint	4	0 to 4 billion
+        ///long	8	-9 quintillion to 9 quintillion
+        ///ulong	8	0 to 18 quintillion
+        ///float	4	7 significant digits1
+        ///double	8	15 significant digits2
+        ///object	4 byte address  All C# Objects
+        ///char	2	Unicode characters
+        ///string	4 byte address  Length up to 2 billion bytes3
+        ///decimal	24	28 to 29 significant digits4
+        ///bool	1	true, false5
+        ///DateTime 	8 	0:00:00am 1/1/01 to 11:59:59pm 12/31/9999
+        ///DateSpan    NA 	-10675199.02:48:05.4775808 to  10675199.02:48:05.47758076
         ///    bytes now working need to check TODO
         ///            PointStructure size is: 24 bytes
         /// </summary>
@@ -64,7 +70,7 @@ namespace POCs.OOPsConcepTsExploring
             int size = System.Runtime.InteropServices.Marshal.SizeOf(typeof(PointStructure));
             Console.WriteLine($"{nameof(PointStructure)} size is: {size} bytes");
 
-         
+
             //BaseClass b = new BaseClass() { MyPropertyInt = 12 };
             //Console.WriteLine($"{nameof(b.MyPropertyInt)} size:{Marshal.SizeOf(b)}");
             Console.WriteLine();
