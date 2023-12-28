@@ -19,11 +19,12 @@ namespace POCs.OOPsConcepTsExploring
             //Test0MemoryStackAndHeap();
             //Test1ValuetypeVsRefTypeTest();
             //Test2SizeOf();
-            //Test3ConstructorCreationFlow();
+            Test3ConstructorCreationFlow();
             //Test4ReferenceTypeChanges();
             //Test5Inheritance();
+            //Test5InheritanceType2();
             //Test6DeepCopyShallowCopy();
-            Test7EqualOperators();
+            //Test7EqualOperators();
 
 
             //  b.NormalProperty2 = 1;

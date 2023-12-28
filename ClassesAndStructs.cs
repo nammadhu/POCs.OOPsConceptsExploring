@@ -45,6 +45,18 @@ namespace POCs.OOPsConceptsExploring
                 {
                 Console.WriteLine($"Am from {nameof(BaseClass)}-constructor");
                 }
+            public BaseClass(int a):base(a)//
+                {
+                Console.WriteLine($"Am from {nameof(BaseClass)}-constructor with parameter:{a}");
+                }
+            public BaseClass(string a) : base(a)//
+                {
+                Console.WriteLine($"Am from {nameof(BaseClass)}-constructor with parameter:{a}");
+                }
+            public BaseClass(float a) : this()//
+                {
+                Console.WriteLine($"Am from {nameof(BaseClass)}-constructor with parameter:{a}");
+                }
             public object Clone()
                 {
                 return new BaseClass//since here cant create new so doing it on next level BaseClass
@@ -109,6 +121,14 @@ namespace POCs.OOPsConceptsExploring
             public AbstractBaseClass()
                 {
                 Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Constructor ");
+                }
+            public AbstractBaseClass(int a)
+                {
+                Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Constructor with int a:{a}");
+                }
+            public AbstractBaseClass(string a):this()
+                {
+                Console.WriteLine($"Am from {nameof(AbstractBaseClass)}-Constructor with int a:{a}");
                 }
             ~AbstractBaseClass()
                 {
