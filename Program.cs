@@ -26,6 +26,7 @@ namespace POCs.OOPsConcepTsExploring
             //Test6DeepCopyShallowCopy();
             //Test7EqualOperators();
             //Test8InterfaceClass();
+            Test9BoxingUnBoxing();
 
               Console.ReadLine();
             }
