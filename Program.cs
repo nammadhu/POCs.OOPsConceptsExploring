@@ -17,7 +17,7 @@ namespace POCs.OOPsConcepTsExploring
         static void Main(string[] args)
             {
             //Test0MemoryStackAndHeap();
-            Test1ValuetypeVsRefTypeTest();
+            //Test1ValuetypeVsRefTypeTest();
             //Test2SizeOf();
             //Test3ConstructorCreationFlow();
             //Test4ReferenceTypeChanges();
@@ -26,7 +26,8 @@ namespace POCs.OOPsConcepTsExploring
             //Test6DeepCopyShallowCopy();
             //Test7EqualOperators();
             //Test8InterfaceClass();
-            Test9BoxingUnBoxing();
+            //Test9BoxingUnBoxing();
+            Test11IEnumerableImplement();
 
               Console.ReadLine();
             }

@@ -29,6 +29,7 @@ namespace POCs.OOPsConceptsExploring
 
         public static void Test10Generics()
             {
+            Console.WriteLine(nameof(Test10Generics));
             Console.WriteLine("Step1 GenericClass");
             GenericClass<int> intObj = new GenericClass<int>(42);
             Console.WriteLine(intObj.GetValue()); // Output: 42
