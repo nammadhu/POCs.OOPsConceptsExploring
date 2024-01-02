@@ -27,7 +27,7 @@ namespace POCs.OOPsConcepTsExploring
             //Test7EqualOperators();
             //Test8InterfaceClass();
             //Test9BoxingUnBoxing();
-            Test11IEnumerableImplement();
+            Test13TaskParallel();
 
               Console.ReadLine();
             }
