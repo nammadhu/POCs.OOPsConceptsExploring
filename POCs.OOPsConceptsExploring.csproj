@@ -9,4 +9,8 @@
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Test-12AsyncAwait.cs" />
+  </ItemGroup>
+
 </Project>
