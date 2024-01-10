@@ -24,7 +24,7 @@ MethodSync starts on Thread 5
 MethodSync ends on Thread 5
 Main-Thread 5
          * */
-        public static async Task Test12AsyncAwaits()
+        public static async Task Test12TaskAsyncAwaitsWithThreadDifferences()
             {
             Console.WriteLine($"Main-Thread {System.Threading.Thread.CurrentThread.ManagedThreadId}");
 
